@@ -27,9 +27,11 @@ class UserList(generics.ListCreateAPIView):
             email=self.request.POST.get('email'),
             defaults=validated_user_data)
 
+        # Retrieve avatar from FILES POST
         obj.avatar = self.request.FILES.get('avatar')
         obj.save()
 
+        # Include avatar filename in response
         if obj.avatar:
             validated_user_data.update({'avatar': obj.avatar.name})
 
