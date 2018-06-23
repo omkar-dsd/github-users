@@ -14,23 +14,29 @@ class UserList(generics.ListCreateAPIView):
     - Create new user, `login` and `email` are mandatory fields
     '''
 
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-    def create(self, validated_data):
+    def create(self, serializer):
         '''Overwriting the default functionality to perform create or update'''
 
         V = Validator()
-        validated_user_data = V.user_data(validated_data.POST.dict())
+        validated_user_data = V.user_data(self.request.POST.dict())
 
         # Update if user with same `login` and `email` is POSTed
         # Else create new user record
         obj, created = User.objects.update_or_create(
-            login=validated_data.POST.get('login'),
-            email=validated_data.POST.get('email'),
+            login=self.request.POST.get('login'),
+            email=self.request.POST.get('email'),
             defaults=validated_user_data)
 
+        obj.avatar = self.request.FILES.get('avatar')
+        obj.save()
+
+        if obj.avatar:
+            validated_user_data.update({'avatar': obj.avatar.name})
+
         return Response(validated_user_data)
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
