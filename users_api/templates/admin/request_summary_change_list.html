@@ -1,0 +1,54 @@
+{% extends 'admin/change_list.html' %}
+
+{% block content_title %}
+    <h1>Summary Report</h1>
+{% endblock %}
+
+
+{% load humanize %}
+
+{% block result_list %}
+
+<div class=”results”>
+    <!-- Structuring the table -->
+    <table>
+
+    <thead>
+      <tr>
+        <th>
+          <div class=”text”>
+            <a href=”#”>Timestamp</a>
+          </div>
+        </th>
+        <th>
+          <div class=”text”>
+            <a href=”#”>Users Added</a>
+          </div>
+        </th>
+        <th>
+          <div class=”text”>
+            <a href=”#”>Search API Requests</a>
+          </div>
+        </th>
+
+      </tr>
+    </thead>
+
+    <!-- Rendering summary details from list-->
+    <tbody>
+      {% for row in summary %}
+      <tr class="{% cycle 'row1' 'row2' %}">
+        <td> {{ row.timestamp }} </td>
+        <td> {{ row.user_count }} </td>
+        <td> {{ row.request_count }} </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+
+{% endblock %}
+
+{% block pagination %}{% endblock %}
