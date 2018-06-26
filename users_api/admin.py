@@ -8,8 +8,8 @@ class UserAdmin(admin.ModelAdmin):
     '''To provide a proper display of user information in Admin panel'''
 
     list_display = ('login', 'user_thumbnail', 'name',
-                    'email', 'company', 'location')
-    search_fields = ('login', 'name', 'email', 'company', 'location')
+                    'email', 'company', 'location', 'created_at')
+    search_fields = ('login', 'name', 'email', 'company', 'location', 'created_at')
 
 
 admin.site.register(User, UserAdmin)
