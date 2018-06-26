@@ -6,7 +6,7 @@
  - Update existing user
  - Similar request will also update existing user details (if `login` and `email` are same)
  - Destroy user record
- - Search users based on `login`, `name`, `email`, `location`, `company` in Admin section
+ - Search users based on `login`, `name`, `email`, `location`, `company`, `created_at` in Admin section
  - Filter users based on same parameters in `Search` API call
  - View report summary in admin panel
  - User details can be viewed in well organised Admin panel, along with the thumbnail (if available)
@@ -150,7 +150,7 @@ The admin panel provides two views:
 
 - **User Details Section**
 
-This section displays each users details along with the thumbnail (if available). Additional functionality has also been provided to **search** user based on `login`, `created_at`, `name`, `email`, `location`, `company`. Click on login of user, and get advanced options.
+This section displays each users details along with the thumbnail (if available). Additional functionality has also been provided to **search** user based on `login`, `created_at`, `name`, `email`, `location`, `company`. Click on login of user, and get advanced options. To search by `created_at` use specific format "YYYY-MM-DD HH-MM", Eg: **2018-06-26 12:49**
 
 - **Report Summary** :construction:
 
